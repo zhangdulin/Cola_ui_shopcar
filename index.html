@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!--网页页面字符集-->
+    <!-- <meta charset="UTF-8"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+    <!--针对移动设备,网站显示宽度等于设备屏幕显示宽度,内容缩放比例为1:1-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--将下面的 <meta> 标签加入到页面中，可以让部分国产浏览器默认采用高速模式渲染页面：-->
+    <meta name="renderer" content="webkit">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>登陆界面</title>
+    <!-- css引入和样式定义区域 -->
+    <link rel="stylesheet" type="text/css" href="resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/login.css">
+    <!-- document 内部样式定义区域-->
+</head>
+<body>
+    <div class="h-box logo">
+        <div style="width:15%" class="box">
+         <img class="logo-img" c-widget="image; class:small; src:./images/log.png">
+     </div>
+     <div class="flex-box welcom">欢迎登录</div>
+     <div style="width:15%" class="box q-link">
+         <img c-widget="image; class:little middle aligned; size:tiny; src:./images/q-icon.png" class="icon-img">
+         <a href="#">登录页面,调查问卷</a>
+     </div>
+ </div>
+ <div class="warp-form">
+     <img c-widget="image; class:little middle aligned; size:tiny; src:./images/warp2.png">
+ </div>
+ <div class="form-posi">
+     <div c-widget="Tab; height:340; direction:bottom">
+       <nav class="tab-bar tabs-height">
+           <ul class="tabs" style="text-align: center; width:382px;">
+               <li name="saoma" c-widget="TabButton; caption:扫码登录" style="margin-left: 18%;"></li>
+               <li name="loadin" c-widget="TabButton; caption:账户登录" ></li>
+           </ul>
+       </nav>
+       <ul class="contents">
+           <li name="saoma">扫码登录</li>
+           <li name="loadin" class="loadin-posi"><div id="field-fix" c-widget="form" style="max-width:400px; width:80%;margin: 0 auto;">
+             <div class="field">
+                 <div c-widget="input; bind:email; placeholder:邮箱/用户名/已验证手机"><div c-widget="ImageLabel; image:./images/pwd.png;"></div></div>
+             </div>
+             <div class="field">
+                 <div c-widget="input; bind:password; placeholder:密码; inputType:password"><div c-widget="ImageLabel; image:./images/pwd1.png;"></div></div>
+             </div>
+             <div class="field">
+                 <div c-widget="checkbox; bind:remamber; label:自动登录"></div>
+                 <a href="#" style="float: right;padding-right: 4px;">忘记密码</a>
+             </div>
+             <div class="field button-fix" c-onclick="testAdmin()">
+                 <div c-widget="button; caption:登录" style="text-align: center;letter-spacing: 20px;"></div>
+             </div>
+         </div>
+         <img c-widget="image; class:middle centered; src:./images/form_b.png" style="padding-top: 10px;width: 100%;">
+     </li>
+ </ul>
+</div>
+</div>
+<!-- <div class="v-box form-posi">
+    <div style="height:40px" class="box">
+    </div>
+    <div class="flex-box">
+    	<div c-widget="form" style="max-width:400px">
+    	    <div class="field">
+    	        <div c-widget="input; bind:email; placeholder:邮箱/用户名/已验证手机"></div>
+    	    </div>
+    	    <div class="field">
+    	        <div c-widget="input; bind:password; placeholder:密码; inputType:password"></div>
+    	    </div>
+    	    <div class="field">
+    	        <div c-widget="checkbox; bind:remamber; label:Remamber Me"></div>
+    	    </div>
+    	    <div class="field">
+    	        <div c-widget="button; caption:Sign In"></div>
+    	    </div>
+    	</div>
+    </div>
+    <div style="height:50px" class="box"><img c-widget="image; class:middle centered; src:./images/form_b.png"></div>
+</div> -->
+<div class="footer-all">
+    <div class="footer">
+        <div class="links">
+            <a rel="nofollow" target="_blank" href="//www.jd.com/intro/about.aspx">
+                关于我们
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="//www.jd.com/contact/">
+                联系我们
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="//zhaopin.jd.com/">
+                人才招聘
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="//www.jd.com/contact/joinin.aspx">
+                商家入驻
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="//www.jd.com/intro/service.aspx">
+                广告服务
+            </a>
+            |
+            <a rel="nofollow" target="_blank" href="//app.jd.com/">
+                手机京东
+            </a>
+            |
+            <a target="_blank" href="/links.vm/club.jd.com/links.aspx">
+                友情链接
+            </a>
+            |
+            <a target="_blank" href="//media.jd.com/">
+                销售联盟
+            </a>
+            |
+            <a href="//club.jd.com/" target="_blank">
+                京东社区
+            </a>
+            |
+            <a href="//gongyi.jd.com" target="_blank">
+                京东公益
+            </a>
+            |
+            <a target="_blank" href="//en.jd.com/" clstag="pageclick|keycount|20150112ABD|9">English Site</a>
+        </div>
+        <div class="copyright">
+            Copyright&nbsp;&copy;&nbsp;2004-2017&nbsp;&nbsp;京东JD.com&nbsp;版权所有
+        </div>
+    </div>
+    <!-- javascript引入区域 -->
+    <script src="resources/jquery-2.1.3.js"></script>
+    <script src="resources/cola-ui/3rd.js"></script>
+    <script src="resources/cola-ui/semantic.js"></script>
+    <script src="resources/cola-ui/cola.js"></script>
+    <script src="resources/cola-ui/i18n/en/cola.js"></script>
+    <!-- <script src="resources/cola-ui/i18n/zh-Hans/cola.js"></script> -->
+    <!-- document 内部样式定义区域-->
+    <script type="text/javascript">
+        cola(function (model) {
+            model.action({
+                testAdmin: function() {
+                 var emai =model.get("email");
+                 var password =model.get("password");
+                 if (emai == "admin" && password ==　"admin") {
+                    window.location.href = "/html/carlist.html";
+                };
+            },
+        });
+        });
+    </script>
+</body>
+</html>

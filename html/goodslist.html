@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- <meta charset="UTF-8"> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="renderer" content="webkit">
+    <title>商品详情</title>
+    <link rel="icon" href="http://www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../resources/cola-ui/cola.css">
+    <link rel="stylesheet" type="text/css" href="../css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../css/goodslist.css">
+</head>
+<body>
+    <div class="v-box">
+        <div class="box" style="height:10%">
+            <div class="h-box">
+                <div class="box" style="width:10%"></div>
+                <div class="box" style="width:80%;text-align:center" id="btn">
+                    <div c-widget="button; class:vertical animated;click:card">
+                        <div class="visible content">&nbsp购物车&nbsp</div>
+                        <div class="hidden content">see</div>
+                    </div>
+                    <div c-widget="button; class:fade animated;click:info">
+                        <div class="visible content">个人信息</div>
+                        <div class="hidden content">look</div>
+                    </div>
+                </div>
+                <div class="box" style="width:10%"></div>
+            </div>
+        </div>
+     <div class="box" style="height:80%">
+        <div class="h-box">
+            <div class="box" style="width:10%"></div>
+            <div class="box" style="width:80%">
+                <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-5" >
+                    <li c-repeat="goods in goods">
+                        <img c-src="goods.src">
+                        <span c-bind="goods.abstract" class="detail"></span>
+                        <span c-bind="price(goods.price)" class="price"></span>
+                        <div c-onclick="shop(goods.src,goods.abstract,goods.price,goods.name)" c-widget="button;class:animated;" class="carbtn">
+                            <div class="visible content">加入购物车</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="box" style="width:10%"></div>
+        </div>
+     </div>
+     <div class="box" style="height:10%">
+      <!--   <div class="h-box">
+            <div class="box" style="width:10%"></div>
+            <div class="box" style="width:80%"></div>
+            <div class="box" style="width:10%"></div>
+        </div> -->
+     </div>
+ </div>  
+<script src="../resources/jquery-2.1.3.js"></script>
+<script src="../resources/cola-ui/3rd.js"></script>
+<script src="../resources/cola-ui/semantic.js"></script>
+<script src="../resources/cola-ui/cola.js"></script>
+<script src="../resources/cola-ui/i18n/en/cola.js"></script>
+<script type="text/javascript">
+    cola(function (model) {
+        model.describe("goods", {
+             provider: "../js/goods.json"
+        });
+          model.action({
+            price:function(money){
+                return "￥" + money;
+            },
+            shop:function(src,abstract,price,name){
+                if(!window.localStorage){
+                            alert("浏览器不支持支持localstorage");
+                            return false;
+                        }else{
+                            if(localStorage[name]){
+                                var num = JSON.parse(localStorage[name]).num;
+                                console.log(JSON.parse(localStorage[name]));
+                                console.log(num)
+                                num++;
+                                localStorage[name]='{"src":"'+src+'","abstract":"'+abstract+'","price":"'+price+'","num":"'+num+'"}';
+                            }
+                            if(!localStorage[name]){
+                                localStorage[name]='{"src":"'+src+'","abstract":"'+abstract+'","price":"'+price+'","num":"'+1+'"}';
+                            }
+                            
+                        }
+            },
+            card:function(){
+                window.location.href='carlist.html';
+            },
+            info:function(){
+                window.location.href='information.html';
+            }
+        })
+    });
+</script>
+</body>
+</html>

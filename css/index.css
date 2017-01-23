@@ -1,0 +1,134 @@
+
+.logo{
+	margin: 0 auto;
+	margin-top: 10px;
+	height: 60px;
+	width: 90%;
+}
+.logo .logo-img{
+	width: 170px!important;
+	height: 60px!important;
+}
+.logo .welcom{
+	padding: 20px 0 20px 0;
+	font-size: 1.6rem;
+	margin-left: 10px;
+}
+.q-link{
+	color: #999;
+	top: 40px;
+}
+.q-link a:hover {
+	color: #E4393C;
+	text-decoration: underline;
+}
+.q-link .icon-img{
+	display: inline-block;
+	width: 18px!important;
+	height: 14px!important;
+	margin: 0 4px;
+	overflow: hidden;
+}
+/*.form-box{
+	margin-top:50px;
+	width: 90%;
+	margin:0 auto;
+}*/
+.warp-form img{
+	width: 100%!important;
+	height: 475px!important;
+    margin: 20px 0 20px;
+}
+.form-posi{
+	position: absolute;
+	top: 18%;
+	right: 5%;
+	width: 34%;
+	height: 350px;
+	background-color: #fff;
+
+}
+.tabs-height{
+	height: 54px!important;
+}
+.tabs-height .caption{
+	line-height: 54px!important;
+	font-weight: 700;
+}
+.ui.c-tab > .tabs-height, .ui.c-tab > .tabs-height > .tabs > .tab-button {
+	background: #fff;
+}
+.ui.c-tab > .tabs-height > .tabs > .tab-button > *{
+	float: none;
+}
+.ui.c-tab.top-tab > .tabs-height > ul > .tab-button, .ui.c-tab.bottom-tab > .tabs-height > ul > .tab-button{
+	border-right:none;
+
+}
+/*.ui.c-tab > .tabs-height > .tabs > .tab-button > li:fist {
+	border-right:1px;
+}*/
+/*.ui.form .loadin-posi #field-fix{
+	width: 80%;
+}*/
+.ui.c-tab.bottom-tab > .tabs-height > .tabs > li{
+    font-size: 18px;
+    width: 124px;
+    font-family: "microsoft yahei";
+    text-align: center;
+    display: inline-block;
+}
+.ui.c-tab.bottom-tab > .tabs-height > .tabs > .tab-button.active, .ui.c-tab.bottom-tab > .tabs-height > .tabs > .tab-button:hover{
+	color: #E4393C;
+	box-shadow:none;
+
+}
+.tabs-height .caption span:hover{
+	color: #E4393C;
+	
+}
+.loadin-posi{
+	margin-top: 30px!important;
+}
+/*.login-form{
+	float: right;
+	top: 40px;
+	position: relative;
+	z-index: 4;
+	background: #fff;
+	overflow: visible;
+	width: 346px;
+	}*/
+.ui.button{
+	    border: 1px solid #e85356;
+	    display: block;
+	    width: 300px;
+	    background: #e4393c;
+	    height: 31px;
+	    line-height: 31px;
+	    color: #fff;
+	    font-size: 20px;
+	    font-family: 'Microsoft YaHei';
+}
+.ui.button:hover {
+    background-color: #e4393c;
+    background-image: none;
+    box-shadow: 0px 0px 0px 1px transparent inset, 0px 0em 0px 0px rgba(34, 36, 38, 0.15) inset;
+    color: rgba(0, 0, 0, 0.8);
+}
+.footer-all{
+		width: 100%;
+		margin: 0 auto;
+		position: absolute;
+		bottom: 0;
+	}
+.footer{
+		padding-bottom: 10px;
+		text-align: center;
+	}
+@media only screen and (max-width: 320px){
+		.share_exchangecontex p{
+			font-size: 1.1rem;
+			position: relative;
+		}
+	}

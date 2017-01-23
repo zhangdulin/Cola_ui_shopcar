@@ -1,0 +1,38 @@
+
+#templateTable div span.detail {
+    width: 100%;
+    display: inline-block;
+    text-align: left;
+}
+#templateTable img{
+	max-width:110px;
+	
+}
+/*#templateTable span.detail{
+	width: 100%;
+	display: inline-block;
+    text-align: center;
+    margin: 6px 6px 0 6px;
+}*/
+#templateTable span.detail input{
+  text-align: center;  
+}
+
+}
+ul li span.price{
+	width: 100%;
+	display: inline-block;
+	text-align: left;
+	font-size: 18px;
+	color: red;
+}
+.h-box{
+    height:46px;
+    line-height: 46px;
+    font-size: 1.3rem;
+}
+.already{
+    text-align: center;
+    text-align: -webkit-center;
+    margin-left: 14%;
+}

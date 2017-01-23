@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+     <meta http-equiv=Content-Typecontent=text/html;charset=utf-8/>
+<!--      <meta http-equiv="Content-Type" content="text/html; charset=gb2312" /> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<!--     <meta name="renderer" content="webkit"> -->
+    <title>购物车</title>
+    <link rel="icon" href="http://www.jd.com/favicon.ico" mce_href="//www.jd.com/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="../resources/cola-ui/semantic.css">
+    <link rel="stylesheet" type="text/css" href="../resources/cola-ui/cola.css">
+<!--     <link rel="stylesheet" type="text/css" href="../css/reset.css"> -->
+    <link rel="stylesheet" type="text/css" href="../css/carlist.css">
+</head>
+<body>
+<div id="templateTable">
+    <template name="goods-list">
+    <div>
+        <img c-src="item.src"><span c-bind="item.abstract" class="detail"></span>
+    </div>
+    </template>
+    
+    <template name="goods-num">
+    <div style="display: inline-flex;">
+       <span c-widget="button;icon:plus;click:{{add(item)}}"></span>
+       <!-- <span c-bind="item.num" ></span> -->
+       <!-- focus:actions(item.num,item) -->
+       <!-- c-watch="actions on item.num"  -->
+       <span  c-widget="input;bind:item.num;" style="width: 20%;text-align: center;margin-right: 3px;overflow: hidden;" class="detail" c-blur="actions1(item)"></span>
+       <span c-widget="button;icon:minus;click:{{sub(item)}}"></span>
+    </div>
+    </template>
+    <template name="operations">
+        <div c-widget="button;caption:删除;class:red;size:mini;click:{{remove(item)}}"></div>
+    </template>
+</div>
+<div class="h-box">
+    <div style="width:20%" class="box"><span c-onclick="allchoice()">全选</span></div>
+    <div style="width:60%;" class="box already">已选择<span c-bind="allhased()"></span>个</div>
+    <div style="width:20%; margin-right: 20%;" class="box">总计:￥<span c-bind="alltotal()"></span>元</div>
+</div>
+<script src="../resources/jquery-2.1.3.js"></script>
+<script src="../resources/cola-ui/3rd.js"></script>
+<script src="../resources/cola-ui/semantic.js"></script>
+<script src="../resources/cola-ui/cola.js"></script>
+<script src="../resources/cola-ui/i18n/en/cola.js"></script>
+<script type="text/javascript">
+    cola(function (model) {
+       var arr = [];
+       var storage = window.localStorage;
+       if(storage.key(i)){
+       for(var i=0;i<storage.length;i++){
+        if(storage.key(i)!="admin"){
+            arr[i] = JSON.parse(storage[storage.key(i)]);
+            // arr2[i] = storage.key(i) + " : " + storage.getItem(storage.key(i)) + "<br>";
+            //console.log(arr[i])
+          }
+        }
+       }
+
+         model.set("flag","true");
+         model.set("items", arr);
+         console.log(arr);
+         console.log(model.get("items"));
+         console.log(JSON.stringify(model.get("items")));
+               model.action({
+                  actions1: function(item){
+                              var numtest = item.get("num");
+                              alert(numtest);
+                              var reg=new RegExp("[0-9]+");
+                              if (reg.test(numtest)) {
+                               item.set("num",numtest);
+                               alert("shuzi");
+                               }else{
+                               alert("dei");
+                               item.set("num",1);
+                               }
+                  },
+                  actions: function(input, item){
+
+                   },
+                   remove: function(item) {
+                       item.remove();
+                   },
+                   danjia: function(danjia){
+                    return "￥"+danjia;
+                   },
+                   stotal: function(price,num){
+                    return "￥"+(price*num);
+                   },
+                   add: function(item){
+                    var numadd = item.get("num");
+                        numadd++;
+                        alert(numadd);
+                        item.set("num",numadd);
+                   },
+                   sub: function(item){
+                    var numsub = item.get("num");
+                    if (numsub == 1) {
+                      item.set("num",1);
+                    }else{
+                          numsub =numsub -1;
+                          alert(numsub);
+                          item.set("num",numsub);
+                    }
+                   },
+                  allchoice: function(){
+                    var allitems = model.get("items");
+                    allitems.each(function(v){
+                      v.set("selected",model.get("flag"));
+                    });
+                    model.set("flag",!model.get("flag"));
+                  },
+                   allhased: function(){
+                    var choiceNum = 0;
+                    var allitems = model.get("items");
+                    allitems.each(function(v){
+                      var selecteds = v.get("selected");
+                       if (selecteds == true) {
+                        choiceNum += parseInt(v.get("num"));
+                       };  
+                    });
+                       return choiceNum; 
+                    },
+                    alltotal:function(){
+                       var choiceNum = 0;
+                       var alltotal = 0;
+                       var priceThis = 0;
+                       var allitems = model.get("items");
+                       allitems.each(function(v){
+                          var selecteds = v.get("selected");
+                          if (selecteds == true) {
+                             priceThis = parseInt(v.get("price"));
+                             choiceNum = parseInt(v.get("num"));
+                             alltotal += choiceNum*priceThis;
+                          }; 
+                       });
+                          return alltotal; 
+                    }
+                   //  $.each(allitems, function(k, v) {
+                   //     // var selecteds = v.get("selected");    
+                   //    if (v.get("selected") == true) {
+                   //      // choiceNum+ = v.get("num"); 
+                   //    }; 
+                   // })   
+               });
+               model.widgetConfig({
+                   templateTable: {
+                       $type: "table",
+                       bind: "item in items",
+                       showHeader: true,
+                       columns: [{
+                           $type: "select",
+                       }, {
+                           caption: "商品",
+                           align: "center",
+                           template: "goods-list",
+                           width: 110
+                       }, {
+                           caption: "单价",
+                           bind: "danjia(item.price)",
+                           align: "center"
+                       }, {
+                           caption: "数量",
+                           align: "center",
+                           template: "goods-num",
+                       },{
+                           caption: "小计",
+                           bind: "stotal(item.price,item.num)",
+                           align: "center"
+                       }, 
+                       {
+                           caption: "操作",
+                           align: "center",
+                           template: "operations"
+                       }]
+                   }
+               });    
+    });
+</script>
+</body>
+</html>
